@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 //V1版本路由
 Route::prefix('v1')->group(function () {
     Route::post('/', function () {
+
         echo 2;
         return view('welcome');
     });
+    Route::get('/test','Admin\V1\IndexController@index');
 });

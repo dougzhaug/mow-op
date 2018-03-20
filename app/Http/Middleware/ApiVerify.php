@@ -19,22 +19,30 @@ class ApiVerify
         {
             return response('Interface does not exist!', 404);
         }
-        //验证jwt的有效性
-        $Authorization = $request->header('Authorization');     //获取验证token
-        list($Bearer,$token) = explode(' ',$Authorization);
-        $key = "aksdfkasdkfkasdkfkaskdfkasdf";
-//        $token = array(
-//            "iss" => "http://abc.org",
-//            "aud" => "http://abc.com",
-//            "iat" => time(),
-//            "nbf" => time()
-//        );
-//        $token = JWT::encode($token, $key);
-        $payload = JWT::decode($token, $key, array('HS256'));
-        $request['api'] = [
-            'payload'=>(array)$payload,
-        ];
-//        dd((array)$payload);die;
+
+        $this->jwtCheck($request);
+
         return $next($request);
+    }
+
+    public function jwtCheck($request)
+    {
+        //验证jwt的有效性
+        try{
+            $Authorization = $request->header('Authorization');     //获取验证token
+            list($Bearer,$token) = explode(' ',$Authorization);
+            $key = "aksdfkasdkfkasdkfkaskdfkasdf1";
+
+            $payload = JWT::decode($token, $key, array('HS256'));
+            $request['api'] = [
+                'payload'=>(array)$payload,
+            ];
+        }catch (\Exception $e){
+//            var_dump($e->getCode());die;
+//            $msg = $e->getMessage();
+//            return response('11112', 404);
+            return ['ddd'=>3333];
+        }
+
     }
 }
