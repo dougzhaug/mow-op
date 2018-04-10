@@ -19,6 +19,9 @@ class ReceiveController extends Controller
         ];
 
         $this->openPlatform = Factory::openPlatform($config);
+        $server = $this->openPlatform->server;
+
+        return $server->serve();
 
     }
 
