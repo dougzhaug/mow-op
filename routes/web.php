@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Route::post('receive/auth','V1\ReceiveController@auth');
+Route::get('receive/bind','V1\ReceiveController@bind');
+Route::get('bind/callback','V1\ReceiveController@callback');
 
 
