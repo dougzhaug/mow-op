@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('receive/auth','V1/ReceiveController@auth');
+Route::post('receive/auth','V1\ReceiveController@auth');
 
 

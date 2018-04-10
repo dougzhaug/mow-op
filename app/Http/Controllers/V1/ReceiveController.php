@@ -8,6 +8,7 @@ use EasyWeChat\Factory;
 class ReceiveController extends Controller
 {
     //
+    public $openPlatform;
     public function auth()
     {
         $config = [
@@ -17,7 +18,17 @@ class ReceiveController extends Controller
             'aes_key'  => '04426065eb6795c0b414d282d52f03f6openspenvip',//'开放平台第三方平台 AES Key'
         ];
 
-        $openPlatform = Factory::openPlatform($config);
-        $openPlatform->getPreAuthorizationUrl('https://easywechat.com/callback'); // 传入回调URI即可
+        $this->openPlatform = Factory::openPlatform($config);
+
+    }
+
+    public function bind()
+    {
+        $this->openPlatform->getPreAuthorizationUrl('http://open.spen.vip/bind/callback'); // 传入回调URI即可
+    }
+
+    public function bindCallback()
+    {
+
     }
 }
