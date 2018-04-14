@@ -39,7 +39,7 @@ class ReceiveController extends Controller
         return view('V1/Receive/bind',['url'=>$url]);
     }
 
-    public function bindCallback()
+    public function callback()
     {
         $config = [
             'app_id'   => 'wx283587b496831502',//'开放平台第三方平台 APPID',
@@ -50,6 +50,6 @@ class ReceiveController extends Controller
 
         $this->openPlatform = Factory::openPlatform($config);
         $a = $this->openPlatform->handleAuthorize();
-        dd($a);
+        dd($a);die;
     }
 }
