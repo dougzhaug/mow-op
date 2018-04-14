@@ -35,8 +35,8 @@ class ReceiveController extends Controller
         ];
 
         $this->openPlatform = Factory::openPlatform($config);
-        return $this->openPlatform->getPreAuthorizationUrl('http://open.spen.vip/bind/callback'); // 传入回调URI即可
-        return redirect($url);
+        $url = $this->openPlatform->getPreAuthorizationUrl('http://open.spen.vip/bind/callback'); // 传入回调URI即可
+        return view('V1/Receive/bind',['url'=>$url]);
     }
 
     public function bindCallback()
